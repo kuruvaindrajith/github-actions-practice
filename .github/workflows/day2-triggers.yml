@@ -1,0 +1,36 @@
+name: Day 2 - Triggers and Jobs
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  greet-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello from job 1
+        run: echo "Job 1 running - triggered by push or PR!"
+
+      - name: Show trigger info
+        run: echo "Event was -> ${{ github.event_name }}"
+
+  info-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show branch name
+        run: echo "Branch is -> ${{ github.ref_name }}"
+
+      - name: Show who triggered this
+        run: echo "Triggered by -> ${{ github.actor }}"
+
+  summary-job:
+    runs-on: ubuntu-latest
+    needs: [greet-job, info-job]
+    steps:
+      - name: Final summary
+        run: echo "Both jobs passed! Pipeline complete!"

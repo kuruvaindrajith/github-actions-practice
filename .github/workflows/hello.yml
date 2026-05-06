@@ -1,0 +1,19 @@
+name: Hello Kishore
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello
+        run: echo "Hello Kishore! GitHub Actions is working!"
+
+      - name: Show current date
+        run: date
+
+      - name: Show who I am
+        run: whoami

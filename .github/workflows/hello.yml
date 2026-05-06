@@ -17,3 +17,5 @@ jobs:
 
       - name: Show who I am
         run: whoami
+      - name: where I am i
+        run: pwd
